@@ -11,14 +11,6 @@
 *.toc
 *.blg
 *.xdv
-# Скомпільований звіт кожної лаби — jobname = назва теки (напр.
-# 04-atwood.pdf), а не PDF узагалі, бо в labs/*/ також лежать методички
-# та інші довідкові PDF, які треба тримати в репозиторії. При додаванні
-# нової лаби додай сюди ще один рядок за тим самим шаблоном.
-/labs/01-pendulums/01-pendulums.pdf
-/labs/02-oberbeck/02-oberbeck.pdf
-/labs/03-maxwell/03-maxwell.pdf
-/labs/04-atwood/04-atwood.pdf
 /labs/_template/_template.pdf
 
 # Тимчасові zip для ручного імпорту в Overleaf
