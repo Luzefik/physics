@@ -2,6 +2,9 @@
 
 Звіти з лабораторних робіт (ДВВ «Основи прикладної фізики», УКУ), LaTeX.
 
+https://docs.google.com/spreadsheets/d/17TN7GFV0l6zM1AK0DieCDqUy5HemCSIcZ0o4taTAYok/edit?usp=sharing -- таблиці
+
+
 ## Структура
 
 ```
