@@ -17,14 +17,29 @@
 % Метадані титульної сторінки
 % --------------------------------------------------------------------------
 \labtitle{Математичний і фізичний (оборотний) маятники}
-\labsubtitle{Лабораторна робота № (вкажіть номер)}
+\labsubtitle{Лабораторна робота № 1}
 
-\student{Прізвище Ім'я}
-% \student{Прізвище Ім'я} % другий співвиконавець (опційно, для групової роботи)
+\student{Довбенчук Олена}
+\student{Кульбаба Андрій}
+\student{Магарита Ія}
+\student{Пастарнак Марко}
 
 \teacher{Володимир Коломієць} % якщо рядок не потрібен — видаліть текст і залиште \teacher{}
 
+% Підписи на титулці (замість «Виконав(ла)» / «Перевірив(ла)» з класу)
+\makeatletter
+\renewcommand{\ucu@labelstudent}{Студенти}
+\renewcommand{\ucu@labelteacher}{Викладач}
+\makeatother
+
 \labdate{РРРР-ММ-ДД}
+
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\sisetup{uncertainty-mode=separate}
+\definecolor{series1}{HTML}{2A78D6}
+\definecolor{series2}{HTML}{EB6834}
 
 \begin{document}
 \maketitlepage

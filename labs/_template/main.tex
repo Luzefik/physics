@@ -28,7 +28,20 @@
 
 \teacher{Володимир Коломієць} % якщо рядок не потрібен — видаліть текст і залиште \teacher{}
 
+% Підписи на титулці (замість «Виконав(ла)» / «Перевірив(ла)» з класу)
+\makeatletter
+\renewcommand{\ucu@labelstudent}{Студенти}
+\renewcommand{\ucu@labelteacher}{Викладач}
+\makeatother
+
 \labdate{РРРР-ММ-ДД}
+
+\usepackage{float}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\sisetup{uncertainty-mode=separate}
+\definecolor{series1}{HTML}{2A78D6}
+\definecolor{series2}{HTML}{EB6834}
 
 \begin{document}
 \maketitlepage
