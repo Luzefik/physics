@@ -158,16 +158,92 @@
 \end{table}
 
 \section{Обробка результатів}
-% Розрахунки шуканих величин та оцінка похибок вимірювань.
-Наведіть розрахунки та підсумковий результат разом із похибкою, наприклад:
+Прискорення вільного падіння обчислено за середніми періодами: для математичного маятника за \eqref{eq:g-math}, для оборотного — за \eqref{eq:g-phys}.
+
+\subsection{Математичний маятник}
+За десятьма періодами табл.~\ref{tab:math} \(T_\text{сер} = \SI{1.655}{\second}\), \(l = \SI{0.66}{\meter}\):
 \begin{equation}
-  g = (\num{9.8} \pm \num{0.1})\ \si{\meter\per\second\squared}
+  g = \frac{4\pi^{2}\cdot \num{0.66}}{(\num{1.655})^{2}} = \SI{9.51}{\meter\per\second\squared}.
+  \label{eq:g-math-num}
 \end{equation}
 
-% Приклад врізки з ключовим результатом (опційно, можна видалити):
-% \begin{keyfacts}
-% \textbf{Результат:} $g = (9.8 \pm 0.1)\ \text{м/с}^2$ \textperiodcentered\ відносна похибка 1{,}0\%
-% \end{keyfacts}
+\subsection{Оборотний маятник}
+Середній період на ножі №1 дорівнює \SI{1.603}{\second}, на ножі №2 — \SI{1.602}{\second}. Різниця \SI{0.001}{\second} менша за \(0{,}5\,\%\), тож для середніх умова \(T_1 \approx T_2\) виконана. Середнє за всіма десятьма вимірами \(T_\text{сер} = \SI{1.603}{\second}\), \(l_{\text{зв}} = \SI{0.643}{\meter}\):
+\begin{equation}
+  g = \frac{4\pi^{2}\cdot \num{0.643}}{(\num{1.603})^{2}} = \SI{9.88}{\meter\per\second\squared}.
+  \label{eq:g-phys-num}
+\end{equation}
+
+\subsection{Похибки}
+Випадкова похибка періоду — довірча похибка середнього (\(P = 0{,}95\), \(t_{0.95;\,9} = 2.26\), \(n = 10\)):
+\begin{equation*}
+  \Delta T_\text{вип} = t_{0.95;\,9}\sqrt{\frac{\sum(T_i - T_\text{сер})^{2}}{n(n-1)}}.
+\end{equation*}
+Систематична похибка періоду — ціна поділки секундоміра \SI{0.01}{\second}, поділена на десять коливань. Звідси \(\Delta T_\text{сист} = \SI{0.001}{\second}\). Вона не зменшується з числом спроб.
+
+Довжину математичного маятника записано до \SI{1}{\centi\meter}, тому \(\Delta l = \SI{0.5}{\centi\meter}\). Відстань між ножами виміряно рулеткою з ціною поділки \SI{1}{\milli\meter}, тому \(\Delta l_{\text{зв}} = \SI{0.5}{\milli\meter}\).
+
+Для \(g = 4\pi^{2} l/T^{2}\) випадкова похибка походить від розкиду періоду, систематична — від приладів:
+\begin{align*}
+  \Delta g_\text{вип} &= g\cdot\frac{2\Delta T_\text{вип}}{T}, \\
+  \Delta g_\text{сист} &= g\sqrt{\left(\frac{\Delta l}{l}\right)^{2} + \left(\frac{2\Delta T_\text{сист}}{T}\right)^{2}}, \\
+  \Delta g &= \sqrt{\Delta g_\text{вип}^{2} + \Delta g_\text{сист}^{2}}.
+\end{align*}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{@{}lcc@{}}
+    \toprule
+    Величина & Математичний & Оборотний \\
+    \midrule
+    \(T_\text{сер}\), с & \num{1.655} & \num{1.603} \\
+    \(\Delta T_\text{вип}\), с & \num{0.0064} & \num{0.0055} \\
+    \(\Delta T_\text{сист}\), с & \num{0.001} & \num{0.001} \\
+    \midrule
+    \(g\), м/с\(^2\) & \num{9.51 \pm 0.10} & \num{9.88 \pm 0.07} \\
+    \(\Delta g_\text{вип}\), м/с\(^2\) & \num{0.07} & \num{0.07} \\
+    \(\Delta g_\text{сист}\), м/с\(^2\) & \num{0.07} & \num{0.01} \\
+    Довірчий інтервал, м/с\(^2\) & \([9.41;\ 9.61]\) & \([9.81;\ 9.95]\) \\
+    \midrule
+    Табличне \(g\), м/с\(^2\) & \num{9.81} & \num{9.81} \\
+    Відносна похибка \(\Delta g/g\), \% & \num{1.1} & \num{0.7} \\
+    Відхилення від табличного, \% & \num{-3.1} & \num{0.7} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Прискорення вільного падіння та похибки (\(P = 0.95\))}
+  \label{tab:g}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.72\linewidth, height=6.2cm,
+      ybar, bar width=28pt,
+      xlabel={}, ylabel={$g$, м/с$^2$},
+      xmin=0.4, xmax=2.6, xtick={1,2},
+      xticklabels={Математичний, Оборотний},
+      ymin=9.2, ymax=10.15,
+      ymajorgrids, grid style={gray!25},
+      axis lines*=left,
+      error bars/y dir=both, error bars/y explicit,
+      legend style={draw=none, at={(0.5,1.02)}, anchor=south, font=\small},
+    ]
+      \addplot[fill=series1, draw=none] coordinates {
+        (1,9.51) +- (0,0.10)
+        (2,9.88) +- (0,0.07)
+      };
+      \addlegendentry{експеримент}
+      \addplot[color=series2, dashed, thick, forget plot] coordinates {(0.4,9.81) (2.6,9.81)};
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Виміряне \(g\) з повною похибкою. Штрихова лінія — табличне значення \SI{9.81}{\meter\per\second\squared}}
+  \label{fig:g}
+\end{figure}
+
+Табличне значення для математичного маятника лежить поза довірчим інтервалом: виміряний період \SI{1.655}{\second} більший за \(2\pi\sqrt{l/g} = \SI{1.63}{\second}\), і цей зсув перевищує розкид між спробами. Для оборотного маятника табличне значення лежить на нижній межі інтервалу, відхилення \(0{,}7\,\%\) не перевищує похибки вимірювання.
+
+Можливі причини зсуву для математичного маятника: час відлічували вручну, тож спільна затримка реакції збільшує період і не входить у розкид між спробами; довжину зчитано до сантиметра, і вона може не збігатися з відстанню від точки підвісу до центра кульки.
 
 \section{Висновки}
 Сформулюйте висновок: чи узгоджується отриманий результат із теоретичним
